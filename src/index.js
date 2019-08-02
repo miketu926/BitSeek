@@ -1,12 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore, applyMiddleware } from 'redux'
+import RootReducers from './frontend/reducers/root_reducers'
+import thunk from 'redux-thunk'
+import logger from 'redux-logger'
+import './styles/index.css'
+import Root from './frontend/root'
 
-ReactDOM.render(<App />, document.getElementById('root'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import { fetchAddress } from './frontend/utils/api';
+import { fetchAddressInfo } from './frontend/actions/fetch_actions'
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const store = createStore(RootReducers, applyMiddleware(thunk, logger));
+
+  const root = document.getElementById('root');
+  ReactDOM.render(<Root store={store} />, root);
+
+  //testing
+  window.getState = store.getState;
+  window.fetchAddress = fetchAddress;
+  window.fetchAddressInfo = fetchAddressInfo;
+  // fetchSingleAddress("1FeexV6bAHb8ybZjqQMjJrcCrHGW9sb6uF")
+  //end testing
+
+});
