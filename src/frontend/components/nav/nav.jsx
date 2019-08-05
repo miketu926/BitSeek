@@ -1,56 +1,51 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchAddressInfo } from '../../actions/fetch_actions'
-import { withRouter } from 'react-router-dom'
+import React, { useState } from 'react'
 import Main from '../main/main'
-// import { Link } from 'react-router-dom';
 
-const Nav = (props) => {
-  // const projects = useSelector(({ entities }) => {
-  //   return entities.projects;
-  // });
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography';
+import navStyles from './nav_styles'
 
+const Nav = () => {
   const [search, setSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
-  // const dispatch = useDispatch();
-
-  // const numberWithCommas = (x) => {
-  //   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  // }
+  const classes = navStyles();
 
   const handleSeek = e => {
     e.preventDefault();
-    // fetchAddressInfo(searchTerm)(dispatch);
-    // pushes to route searchTerm then fetch info from there in main'
-    // props.location.pathname.concat(searchTerm);
-    // props.history.push(`/${searchTerm}`)
     setSearch(true);
   }
 
   return !search ?
-    <div>
-      BITSEEK NAVIGATION
-      <form onSubmit={e => handleSeek(e)}>
-        <input type="text"
-          placeholder="Bitcoin Address"
+    <div className={classes.main}>
+      <form className={classes.form}>
+        <div className={classes.formTitle}>BITSEEK</div>
+        <TextField
+          id='outlined-with-placeholder'
+          label='Bitcoin Address'
+          placeholder='Bitcoin Address'
+          className={classes.formInput}
+          type='search'
+          margin='normal'
+          variant='outlined'
+          autoComplete="off"
           value={searchTerm}
-          onChange={e => setSearchTerm(e.currentTarget.value)} />
-        <input type="submit" value="seek!" />
+          onChange={e => setSearchTerm(e.currentTarget.value)}
+        />
+        <Button
+          className={classes.button}
+          variant="contained"
+          color="primary"
+          size='large'
+          disabled={searchTerm.length > 0 ? false : true}
+          onClick={e => handleSeek(e)}>
+          BEGIN BITSEEK!</Button>
       </form>
-    </div>
+    </div >
     :
-    <div>
-      BITSEEK NAVIGATION
-      <form onSubmit={e => handleSeek(e)}>
-        <input type="text"
-          placeholder="Bitcoin Address"
-          value={searchTerm}
-          onChange={e => setSearchTerm(e.currentTarget.value)} />
-        <input type="submit" value="seek!" />
-      </form>
-      <Main address={searchTerm} />
-    </div>
+    <>
+      <Main address={searchTerm} setSearch={setSearch} />
+    </>
 
 }
 export default Nav;
