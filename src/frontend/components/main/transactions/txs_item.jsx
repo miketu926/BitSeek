@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import convert from '../../../utils/convert_time'
+import convertBTC from '../../../utils/convert_btc'
 import './txs_item_styles.css'
 
 import List from '@material-ui/core/List';
@@ -10,7 +12,7 @@ import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
-const TxsItem = ({ txs, setCurrTxs, id, n }) => {
+const TxsItem = ({ txs, setCurrTxs, id, n, addr }) => {
   const { time } = txs;
   const [open, setOpen] = useState(false);
 
@@ -18,16 +20,19 @@ const TxsItem = ({ txs, setCurrTxs, id, n }) => {
     setOpen(!open);
   }
 
-  const convert = (unix) => {
-    const time = new Date(unix * 1000);
-    return time.toLocaleDateString('default', { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+  const amtReceived = (txs) => {
+    debugger
+    for (const item of txs.out) {
+      if (addr === item.addr) return convertBTC(item.value);
+    }
+    return 'no transaction';
   }
 
   return (
     <>
-      <ListItem button onClick={handleClick}>
+      <ListItem className='alt-list2' button onClick={handleClick}>
         <ListItemIcon><SendIcon /></ListItemIcon>
-        <ListItemText primary={`Transaction ${n - id}`} />
+        <ListItemText primary={`Transaction ${n - id} - ${amtReceived(txs)} BTC`} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>

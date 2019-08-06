@@ -27,6 +27,15 @@ const Main = ({ address, setSearch, setSearchTerm }) => {
   const [offset, setOffset] = useState(0);
   const [currTxs, setCurrTxs] = useState(0);
 
+  const handleLoadMore = () => {
+    setOffset(Math.min(offset + 50, numTxs));
+  }
+
+  const handleRefresh = () => {
+    setSearchTerm("");
+    setSearch(false);
+  }
+
   const classes = mainStyles();
 
   useEffect(() => {
@@ -40,21 +49,19 @@ const Main = ({ address, setSearch, setSearchTerm }) => {
   if (!transactions || !info) return <div>loading...</div>
 
   const txs = transactions.map((txs, i) => {
-    return <TxsItem key={i} id={i} txs={txs} setCurrTxs={setCurrTxs} n={numTxs} />
+    return <TxsItem
+      key={i}
+      id={i}
+      txs={txs}
+      setCurrTxs={setCurrTxs}
+      n={numTxs}
+      addr={address}
+    />
   })
 
   const txsDetail = transactions.map((txs, i) => {
     return <TxsDetail key={i} txs={txs} />
   })
-
-  const handleLoadMore = () => {
-    setOffset(Math.min(offset + 50, numTxs));
-  }
-
-  const handleRefresh = () => {
-    setSearchTerm("");
-    setSearch(false);
-  }
 
   return (
     <>
@@ -79,7 +86,7 @@ const Main = ({ address, setSearch, setSearchTerm }) => {
 
         <div className='transactions'>
           <List
-            className={classes.list}
+            className='alt-list1'
             subheader={
               <ListSubheader
                 color='primary'
@@ -88,11 +95,11 @@ const Main = ({ address, setSearch, setSearchTerm }) => {
                 disableSticky={true}
               >
                 Transactions
-              </ListSubheader>
-            }
+              </ListSubheader>}
           >
             {txs}
           </List>
+
           {offset < numTxs && numTxs > 50 ?
             <Button
               className={classes.loadMoreBtn}
@@ -103,11 +110,10 @@ const Main = ({ address, setSearch, setSearchTerm }) => {
             >
               LOAD MORE
           </Button> : null}
+
         </div>
 
-        <ul className='details'>
-          {txsDetail[currTxs]}
-        </ul>
+        {txsDetail[currTxs]}
 
       </div>
     </>

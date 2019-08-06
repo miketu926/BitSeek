@@ -12,16 +12,6 @@ ul {
   padding: 25px;
 }
 
-.details {
-  grid-column: 2/4;
-  grid-row: 1/5;
-  /* border-radius: 20px; */
-  margin-right: 30px;
-  overflow-y: scroll;
-  background-color: #a99cb8;
-  height: auto;
-}
-
 #nested-list-subheader {
   letter-spacing: 2px;
   font-weight: bold;

@@ -1,6 +1,12 @@
 import React from 'react'
 import InputItem from './input_item'
 import OutItem from './out_item'
+import convert from '../../../utils/convert_time'
+import convertBTC from '../../../utils/convert_btc'
+import './details_styles.css'
+
+import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
 
 const TxsDetail = ({ txs }) => {
 
@@ -17,23 +23,54 @@ const TxsDetail = ({ txs }) => {
   })
 
   return (
-    <div>
-      <div>
+    <>
+      <div className='transaction-info'>
         <i>Transaction Detail</i>
-        {hash}
-        {time}
-        {vin_sz}
-        {vout_sz}
-        {block_index}
-      </div>
-      <div>
-        {inputs}
-      </div>
-      <div>
-        {outs}
+        <div className='hash'>
+          <div className='hash2'>Hash Address</div>
+          {hash}
+        </div>
+        <div className='time1'>Time</div>
+        <div className='time2'>{convert(time)}</div>
+        <div className='isize1'>Inbound Size</div>
+        <div className='isize2'>{vin_sz}</div>
+        <div className='osize1'>Outbound Size</div>
+        <div className='osize2'>{vout_sz}</div>
+        <div className='blockidx1'>Block Index</div>
+        <div className='blockidx2'>{block_index}</div>
       </div>
 
-    </div>
+      <div className='details'>
+        <List
+          className='alt-list1'
+          subheader={
+            <ListSubheader
+              color='primary'
+              component="div"
+              id="nested-list-subheader"
+              disableSticky={true}
+            >
+              From
+              </ListSubheader>}
+        >
+          {inputs}
+        </List>
+        <List
+          className='alt-list1'
+          subheader={
+            <ListSubheader
+              color='primary'
+              component="div"
+              id="nested-list-subheader"
+              disableSticky={true}
+            >
+              To
+              </ListSubheader>}
+        >
+          {outs}
+        </List>
+      </div>
+    </>
   );
 }
 export default TxsDetail;
