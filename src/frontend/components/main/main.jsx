@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchAddressInfo, fetchMoreInfo } from '../../actions/fetch_actions'
-import TxsItem from './txs_item'
-import TxsDetail from './txs_detail'
-import Summary from './summary'
-// import { Link } from 'react-router-dom';
+import TxsItem from './transactions/txs_item'
+import TxsDetail from './details/txs_detail'
+import Summary from './summary/summary'
 
-const Main = ({ address }) => {
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Button from '@material-ui/core/Button'
+import mainStyles from './main_styles'
+import './styles.css'
+
+const Main = ({ address, setSearch, setSearchTerm }) => {
   const transactions = useSelector(({ entities }) => {
     return entities.txs;
   })
@@ -19,6 +24,8 @@ const Main = ({ address }) => {
   const numTxs = info.n_tx;
   const [offset, setOffset] = useState(0);
   const [currTxs, setCurrTxs] = useState(0);
+
+  const classes = mainStyles();
 
   useEffect(() => {
     if (offset === 0) {
@@ -42,20 +49,42 @@ const Main = ({ address }) => {
     setOffset(Math.min(offset + 50, numTxs));
   }
 
-  return (
-    <div>
-      <p>{numTxs}</p>
-      <p>{offset}</p>
-      <p>{currTxs}</p>
-      <ul>{txs[currTxs]}</ul>
-      <Summary info={info} />
-      <ul>{txsDetail[currTxs]}</ul>
-      <ul>
-        {txs}
-        {offset < numTxs ? <button onClick={() => handleClick()}>LOAD MORE</button> : null}
-      </ul>
+  const handleRefresh = () => {
+    setSearchTerm("");
+    setSearch(false);
+  }
 
-    </div>
+  return (
+    <>
+      <AppBar
+        className={classes.appbar}
+        position="fixed">
+        <Toolbar>
+          <Button
+            className={classes.refreshBtn}
+            color="inherit"
+            disableRipple={true}
+            onClick={() => handleRefresh()}
+          >
+            BITSEEK
+            </Button>
+        </Toolbar>
+      </AppBar>
+      <div className={classes.main}>
+
+        <Summary info={info} />
+
+        <div className='transactions'>
+          {txs}
+          {offset < numTxs && numTxs > 50 ? <button onClick={() => handleClick()}>LOAD MORE</button> : null}
+        </div>
+
+        <ul className='details'>
+          {txsDetail[currTxs]}
+        </ul>
+
+      </div>
+    </>
   );
 }
 export default Main;

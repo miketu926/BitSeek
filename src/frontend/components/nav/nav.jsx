@@ -3,12 +3,12 @@ import Main from '../main/main'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import Typography from '@material-ui/core/Typography';
 import navStyles from './nav_styles'
 
 const Nav = () => {
   const [search, setSearch] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("1FeexV6bAHb8ybZjqQMjJrcCrHGW9sb6uF");
   const classes = navStyles();
 
   const handleSeek = e => {
@@ -16,7 +16,8 @@ const Nav = () => {
     setSearch(true);
   }
 
-  return !search ?
+  // return !search ?
+  return search ?
     <div className={classes.main}>
       <form className={classes.form}>
         <div className={classes.formTitle}>BITSEEK</div>
@@ -28,7 +29,7 @@ const Nav = () => {
           type='search'
           margin='normal'
           variant='outlined'
-          autoComplete="off"
+          // autoComplete="off"
           value={searchTerm}
           onChange={e => setSearchTerm(e.currentTarget.value)}
         />
@@ -44,7 +45,7 @@ const Nav = () => {
     </div >
     :
     <>
-      <Main address={searchTerm} setSearch={setSearch} />
+      <Main address={searchTerm} setSearch={setSearch} setSearchTerm={setSearchTerm} />
     </>
 
 }
