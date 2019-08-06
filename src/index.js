@@ -4,7 +4,6 @@ import { createStore, applyMiddleware } from 'redux'
 import RootReducers from './frontend/reducers/root_reducers'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
-import './styles/index.css'
 import Root from './frontend/root'
 
 document.addEventListener('DOMContentLoaded', () => {

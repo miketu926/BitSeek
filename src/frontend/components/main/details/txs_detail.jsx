@@ -2,14 +2,11 @@ import React from 'react'
 import InputItem from './input_item'
 import OutItem from './out_item'
 import convert from '../../../utils/convert_time'
-import convertBTC from '../../../utils/convert_btc'
+import List from '@material-ui/core/List'
+import ListSubheader from '@material-ui/core/ListSubheader'
 import './details_styles.css'
 
-import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
-
 const TxsDetail = ({ txs }) => {
-
   const { hash, time, vin_sz, vout_sz, block_index } = txs;
   const inputArr = txs.inputs;
   const outArr = txs.out;
@@ -39,7 +36,6 @@ const TxsDetail = ({ txs }) => {
         <div className='blockidx1'>Block Index</div>
         <div className='blockidx2'>{block_index}</div>
       </div>
-
       <div className='details'>
         <List
           className='alt-list1'
@@ -48,10 +44,9 @@ const TxsDetail = ({ txs }) => {
               color='primary'
               component="div"
               id="nested-list-subheader"
-              disableSticky={true}
-            >
+              disableSticky={true}>
               From
-              </ListSubheader>}
+            </ListSubheader>}
         >
           {inputs}
         </List>
@@ -62,10 +57,9 @@ const TxsDetail = ({ txs }) => {
               color='primary'
               component="div"
               id="nested-list-subheader"
-              disableSticky={true}
-            >
+              disableSticky={true}>
               To
-              </ListSubheader>}
+            </ListSubheader>}
         >
           {outs}
         </List>

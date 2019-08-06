@@ -1,4 +1,8 @@
-import { RECEIVE_ADDRESS_INFO, RECEIVE_MORE_INFO } from '../actions/fetch_actions';
+import {
+  RECEIVE_ADDRESS_INFO,
+  RECEIVE_MORE_INFO,
+  REMOVE_INFO
+} from '../actions/fetch_actions';
 import { merge } from 'lodash';
 
 const entitiesReducer = (oldState = {}, action) => {
@@ -13,6 +17,8 @@ const entitiesReducer = (oldState = {}, action) => {
       let moreTxs = oldTxs.concat(action.payload.txs);
       state.txs = moreTxs;
       return state;
+    case REMOVE_INFO:
+      return {};
     default:
       return oldState;
   }

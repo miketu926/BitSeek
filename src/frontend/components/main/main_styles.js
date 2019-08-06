@@ -24,7 +24,7 @@ const mainStyles = makeStyles({
     paddingTop: '90px',
     paddingBottom: '30px',
     width: '100%',
-    background: '#171717',
+    background: '#0d001c',
     height: window.innerHeight - 120,
   },
   nestedList: {
