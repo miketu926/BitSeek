@@ -8,6 +8,8 @@ import Summary from './summary/summary'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
+import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import mainStyles from './main_styles'
 import './styles.css'
 
@@ -33,19 +35,19 @@ const Main = ({ address, setSearch, setSearchTerm }) => {
     } else if (offset < numTxs) {
       fetchMoreInfo(address, offset)(dispatch);
     }
-  }, [address, offset]);
+  }, [offset]);
 
   if (!transactions || !info) return <div>loading...</div>
 
   const txs = transactions.map((txs, i) => {
-    return <TxsItem key={i} id={i} txs={txs} setCurrTxs={setCurrTxs} />
+    return <TxsItem key={i} id={i} txs={txs} setCurrTxs={setCurrTxs} n={numTxs} />
   })
 
   const txsDetail = transactions.map((txs, i) => {
     return <TxsDetail key={i} txs={txs} />
   })
 
-  const handleClick = () => {
+  const handleLoadMore = () => {
     setOffset(Math.min(offset + 50, numTxs));
   }
 
@@ -70,13 +72,37 @@ const Main = ({ address, setSearch, setSearchTerm }) => {
             </Button>
         </Toolbar>
       </AppBar>
+
       <div className={classes.main}>
 
         <Summary info={info} />
 
         <div className='transactions'>
-          {txs}
-          {offset < numTxs && numTxs > 50 ? <button onClick={() => handleClick()}>LOAD MORE</button> : null}
+          <List
+            className={classes.list}
+            subheader={
+              <ListSubheader
+                color='primary'
+                component="div"
+                id="nested-list-subheader"
+                disableSticky={true}
+              >
+                Transactions
+              </ListSubheader>
+            }
+          >
+            {txs}
+          </List>
+          {offset < numTxs && numTxs > 50 ?
+            <Button
+              className={classes.loadMoreBtn}
+              variant='contained'
+              color='primary'
+              size='medium'
+              onClick={() => handleLoadMore()}
+            >
+              LOAD MORE
+          </Button> : null}
         </div>
 
         <ul className='details'>

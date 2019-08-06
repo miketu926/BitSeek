@@ -1,0 +1,44 @@
+.summary {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  display: grid;
+  grid-template-columns: repeat(1fr, 3);
+  grid-template-rows: repeat(1fr, 7);
+  border-radius: 20px;
+  background-color: #a99cb8;
+  margin-left: 30px;
+  height: auto;
+  padding: 10px;
+}
+
+.summary > i {
+  grid-column: 1/4;
+  grid-row: 1/2;
+  letter-spacing: 2px;
+  font-weight: bold;
+  color: #eeeeee;
+  font-size: 22px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 12px;
+}
+
+.summary > div:nth-child(odd) {
+  grid-column: 2/4;
+  letter-spacing: 1px;
+  color: #171717;
+}
+
+.summary > div:nth-child(even) {
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #210740;
+}
+
+.summary > div {
+  margin: 3px 3px;
+}
+
+.summary > div > strong {
+  color: #210740;
+}

@@ -1,13 +1,19 @@
 import React from 'react'
-import '../styles.css'
+import './summary_styles.css'
 
 const Summary = ({ info }) => {
-
   const { hash160, address, n_tx, total_received, total_sent, final_balance } = info;
+
+  const convert = (x, btc) => {
+    x = (x / btc).toFixed(6);
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  const btc = 100000000;
 
   return (
     <div className='summary'>
-      <i>Wallet Info</i>
+      <i>Wallet</i>
       <div>Address</div>
       <div>{address}</div>
       <div>Hash160</div>
@@ -15,11 +21,11 @@ const Summary = ({ info }) => {
       <div>Transactions</div>
       <div>{n_tx}</div>
       <div>Receieved</div>
-      <div>{(total_received / 100000000).toFixed(6)} <strong>BTC</strong></div>
+      <div>{convert(total_received, btc)} <strong>BTC</strong></div>
       <div>Sent</div>
-      <div>{(total_sent / 100000000).toFixed(6)} <strong>BTC</strong></div>
-      <div>Final Balance</div>
-      <div>{(final_balance / 100000000).toFixed(6)} <strong>BTC</strong></div>
+      <div>{convert(total_sent, btc)} <strong>BTC</strong></div>
+      <div>Balance</div>
+      <div>{convert(final_balance, btc)} <strong>BTC</strong></div>
     </div>
   );
 }

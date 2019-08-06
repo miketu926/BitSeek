@@ -11,6 +11,10 @@ const mainStyles = makeStyles({
     letterSpacing: '20px',
     fontSize: '25px',
   },
+  loadMoreBtn: {
+    marginTop: '20px',
+    width: '200px',
+  },
   main: {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr 1fr',
@@ -22,6 +26,12 @@ const mainStyles = makeStyles({
     width: '100%',
     background: '#171717',
     height: window.innerHeight - 120,
+  },
+  list: {
+    width: '100%',
+  },
+  nestedList: {
+    paddingLeft: '45px',
   }
 })
 

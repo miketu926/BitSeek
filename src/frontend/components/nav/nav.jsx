@@ -35,8 +35,8 @@ const Nav = () => {
         />
         <Button
           className={classes.button}
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           size='large'
           disabled={searchTerm.length > 0 ? false : true}
           onClick={e => handleSeek(e)}>

@@ -5,10 +5,10 @@ const InputItem = ({ txs }) => {
   const { addr, value } = txs.prev_out
 
   return (
-    <li>
+    <div>
       {addr}
       {value}
-    </li>
+    </div>
   );
 }
 export default InputItem;

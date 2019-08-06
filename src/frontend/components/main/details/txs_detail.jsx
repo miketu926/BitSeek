@@ -18,19 +18,20 @@ const TxsDetail = ({ txs }) => {
 
   return (
     <div>
-      Transaction Detail
-      {hash}
-      {time}
-      {vin_sz}
-      {vout_sz}
-      {block_index}
-
-      <ul>
+      <div>
+        <i>Transaction Detail</i>
+        {hash}
+        {time}
+        {vin_sz}
+        {vout_sz}
+        {block_index}
+      </div>
+      <div>
         {inputs}
-      </ul>
-      <ul>
+      </div>
+      <div>
         {outs}
-      </ul>
+      </div>
 
     </div>
   );

@@ -5,10 +5,10 @@ const OutItem = ({ txs }) => {
   const { addr, value } = txs
 
   return (
-    <li>
+    <div>
       {addr}
       {value}
-    </li>
+    </div>
   );
 }
 export default OutItem;

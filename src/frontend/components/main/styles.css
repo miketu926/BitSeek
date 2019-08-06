@@ -2,25 +2,9 @@ ul {
   list-style-type: none;
 }
 
-.summary {
-  grid-column: 1/2;
-  grid-row: 1/2;
-  display: grid;
-  grid-template-columns: repeat(1fr, 3);
-  grid-template-rows: repeat(1fr, 7);
-  border: 1px solid #c7c7c7;
-  border-radius: 20px;
-  background-color: #a99cb8;
-  margin-left: 30px;
-  height: auto;
-  padding: 10px;
-}
-
 .transactions {
   grid-column: 1/2;
   grid-row: 2/5;
-  border: 1px solid #c7c7c7;
-  border-radius: 20px;
   margin-left: 30px;
   overflow: auto;
   background-color: #a99cb8;
@@ -31,43 +15,19 @@ ul {
 .details {
   grid-column: 2/4;
   grid-row: 1/5;
-  border: 1px solid #c7c7c7;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   margin-right: 30px;
   overflow-y: scroll;
   background-color: #a99cb8;
   height: auto;
 }
 
-/* info details */
-.summary > i {
-  grid-column: 1/4;
-  grid-row: 1/2;
+#nested-list-subheader {
   letter-spacing: 2px;
   font-weight: bold;
-  color: #210740;
+  font-style: italic;
+  border-bottom: 1px solid #eeeeee;
+  color: #eeeeee;
   font-size: 22px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid #171717;
-  margin-bottom: 12px;
-}
-
-.summary > div:nth-child(odd) {
-  grid-column: 2/4;
-  letter-spacing: 1px;
-  color: #171717;
-}
-
-.summary > div:nth-child(even) {
-  letter-spacing: 1px;
-  font-weight: bold;
-  color: #210740;
-}
-
-.summary > div {
-  margin: 3px 3px;
-}
-
-.summary > div > strong {
-  color: #210740;
+  margin-bottom: 15px;
 }
