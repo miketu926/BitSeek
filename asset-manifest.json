@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/BitSeek/static/css/main.51e781be.chunk.css",
+    "main.js": "/BitSeek/static/js/main.5d4e3ef9.chunk.js",
+    "main.js.map": "/BitSeek/static/js/main.5d4e3ef9.chunk.js.map",
+    "runtime~main.js": "/BitSeek/static/js/runtime~main.50d9244e.js",
+    "runtime~main.js.map": "/BitSeek/static/js/runtime~main.50d9244e.js.map",
+    "static/js/2.1b93ad48.chunk.js": "/BitSeek/static/js/2.1b93ad48.chunk.js",
+    "static/js/2.1b93ad48.chunk.js.map": "/BitSeek/static/js/2.1b93ad48.chunk.js.map",
+    "index.html": "/BitSeek/index.html",
+    "precache-manifest.f1ded686de1b00d5d7ef702fc7a23984.js": "/BitSeek/precache-manifest.f1ded686de1b00d5d7ef702fc7a23984.js",
+    "service-worker.js": "/BitSeek/service-worker.js",
+    "static/css/main.51e781be.chunk.css.map": "/BitSeek/static/css/main.51e781be.chunk.css.map"
+  }
+}
