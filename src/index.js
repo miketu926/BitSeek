@@ -8,11 +8,8 @@ import Root from './frontend/root'
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const store = createStore(RootReducers, applyMiddleware(thunk, logger));
+  const store = createStore(RootReducers, applyMiddleware(thunk));
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store={store} />, root);
-
-  // 1FeexV6bAHb8ybZjqQMjJrcCrHGW9sb6uF
-  // 35hK24tcLEWcgNA4JxpvbkNkoAcDGqQPsP
 });
