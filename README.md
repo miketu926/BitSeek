@@ -7,6 +7,7 @@
 * [Technologies](#technologies)
 * [Landing Page](#landing-page)
 * [Main Page](#main-page)
+* [Code Samples](#snippets)
 * [Additional Features](#additional-features)
 
 ## Installation
@@ -38,6 +39,89 @@
 
 ## Main Page
 ![MainPage](src/images/MainPage.png "Main Page")
+
+## Snippets
+```javascript
+useEffect(() => {
+  if (offset === 0) {
+    const checkErr = async () => {
+      const res = await fetchAddress(address);
+      if (res.status === 500) {
+        handleRefresh(true);
+      } else {
+        fetchAddressInfo(address, offset)(dispatch);
+      }
+    }
+    checkErr();
+  } else if (offset < numTxs) {
+    fetchMoreInfo(address, offset)(dispatch);
+  }
+}, [offset]);
+```
+
+Code snippet of error handling using async/await within React hooks useEffect lifecycle to determine if the user should be brought back to the landing page with a modal to notify that the address is invalid (src/frontend/components/main/main.jsx)
+
+```javascript
+const mainStyles = makeStyles({
+  main: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr',
+    gridTemplateRows: '1fr 1fr 1fr 1fr',
+    gridColumnGap: '30px',
+    gridRowGap: '30px',
+    paddingTop: '90px',
+    paddingBottom: '30px',
+    width: '100%',
+    background: '#0d001c',
+    height: window.innerHeight - 120, // height determined dynamically
+  }
+})
+```
+
+Using styled components with CSS Grids and window.innerHeight in order to dynamically determine height of the app (src/frontend/components/main/main_styles.js)
+
+```javascript
+const amtReceived = (txs) => {
+  let total = 0;
+  for (const item of txs.out) {
+    if (ownAddr === item.addr) total += parseFloat(item.value);
+  }
+  return total;
+}
+
+const amtSent = (txs) => {
+  let total = 0;
+  for (const item of txs.inputs) {
+    if (ownAddr === item.prev_out.addr) total += parseFloat(item.prev_out.value);
+  }
+  return total;
+}
+
+const totalAmt = (amtReceived, amtSent) => {
+  let total = parseFloat(amtReceived - amtSent);
+  return convertBTC(total);
+}
+
+return (
+  <>
+    <ListItem className='alt-list2' button onClick={handleClick}>
+      <ListItemIcon><SendIcon /></ListItemIcon>
+      <ListItemText primary={`Transaction ${n - id} > ${totalAmt(amtReceived(txs), amtSent(txs))}`} />
+      {open ? <ExpandLess /> : <ExpandMore />}
+    </ListItem>
+    <Collapse in={open} timeout="auto" unmountOnExit>
+      <List component="div" disablePadding>
+        <ListItem button id='sublist' onClick={() => setCurrTxs(id)}>
+          <ListItemIcon><SendIcon /></ListItemIcon>
+          <ListItemText primary={convert(time)} />
+        </ListItem>
+      </List>
+    </Collapse>
+  </>
+)
+```
+
+Using both outbound transactions and inbound transactions to determine if the address was a sender (indicated as a negative BTC amount) or a receiver (indicated as a positive BTC amount) as part of the transactions list (src/frontend/components/main/transactions/txs_item.jsx)
 
 ## Additional Features
 ![Transactions](src/images/BitSeek_TransactionDetails.gif "Transactions")

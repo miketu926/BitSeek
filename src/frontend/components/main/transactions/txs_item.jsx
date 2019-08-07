@@ -20,24 +20,31 @@ const TxsItem = ({ txs, setCurrTxs, id, n, ownAddr }) => {
   }
 
   const amtReceived = (txs) => {
+    let total = 0;
     for (const item of txs.out) {
-      if (ownAddr === item.addr) return convertBTC(item.value);
+      if (ownAddr === item.addr) total += parseFloat(item.value);
     }
-    return false;
+    return total;
   }
 
   const amtSent = (txs) => {
+    let total = 0;
     for (const item of txs.inputs) {
-      if (ownAddr === item.prev_out.addr) return convertBTC(item.prev_out.value)
+      if (ownAddr === item.prev_out.addr) total += parseFloat(item.prev_out.value);
     }
-    return 'no transaction';
+    return total;
+  }
+
+  const totalAmt = (amtReceived, amtSent) => {
+    let total = parseFloat(amtReceived - amtSent);
+    return convertBTC(total);
   }
 
   return (
     <>
       <ListItem className='alt-list2' button onClick={handleClick}>
         <ListItemIcon><SendIcon /></ListItemIcon>
-        <ListItemText primary={`Transaction ${n - id} > ${!amtReceived(txs) ? amtSent(txs) : amtReceived(txs)} BTC`} />
+        <ListItemText primary={`Transaction ${n - id} > ${totalAmt(amtReceived(txs), amtSent(txs))}`} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>

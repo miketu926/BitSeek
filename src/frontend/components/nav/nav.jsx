@@ -16,7 +16,8 @@ const Nav = () => {
     setSearch(true);
   }
 
-  const handleModalClose = () => {
+  const handleModalClose = (e) => {
+    e.preventDefault();
     setSearchTerm("");
     setOpenModal(false);
   }
@@ -50,7 +51,7 @@ const Nav = () => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={openModal}
-        onClose={() => handleModalClose()}
+        onClose={e => handleModalClose(e)}
       >
         <div className={classes.modal} id='modal'>
           <h2 id='modal-title'>Oh No!</h2>
@@ -64,7 +65,7 @@ const Nav = () => {
             color='primary'
             size='small'
             open={openModal}
-            onClick={() => handleModalClose()}>
+            onClick={e => handleModalClose(e)}>
             OK</Button>
         </div>
       </Modal>
