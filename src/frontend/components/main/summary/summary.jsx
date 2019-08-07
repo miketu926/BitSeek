@@ -7,7 +7,7 @@ const Summary = ({ info }) => {
 
   return (
     <div className='summary'>
-      <i>Wallet</i>
+      <i>Address Info</i>
       <div>Address</div>
       <div>{address}</div>
       <div>Hash160</div>
