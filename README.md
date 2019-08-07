@@ -1,5 +1,5 @@
 # BitSeek
-[BitSeek](https://getstart3d.herokuapp.com/ "BitSeek") (live) is a single page app that searches for cryptocurrency details and transactions of bitcoin addresses using [Blockchain's APIs](https://www.blockchain.com/api/ "Blockchain API").
+[BitSeek](https://miketu.dev/BitSeek/ "BitSeek") (live) is a single page app that searches for cryptocurrency details and transactions of bitcoin addresses using [Blockchain's APIs](https://www.blockchain.com/api/ "Blockchain API").
 
 ## Table of contents
 * [Installation](#installation)
