@@ -89,12 +89,16 @@ const Main = ({ address, setSearch, setSearchTerm, setOpenModal }) => {
       txs={txs}
       setCurrTxs={setCurrTxs}
       n={numTxs}
-      addr={address}
+      ownAddr={info.address}
     />
   })
 
   const txsDetail = transactions.map((txs, i) => {
-    return <TxsDetail key={i} txs={txs} ownAddr={address} />
+    return <TxsDetail
+      key={i}
+      txs={txs}
+      ownAddr={info.address}
+    />
   })
 
   return (

@@ -11,7 +11,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import './txs_item_styles.css'
 
-const TxsItem = ({ txs, setCurrTxs, id, n, addr }) => {
+const TxsItem = ({ txs, setCurrTxs, id, n, ownAddr }) => {
   const { time } = txs;
   const [open, setOpen] = useState(false);
 
@@ -21,7 +21,14 @@ const TxsItem = ({ txs, setCurrTxs, id, n, addr }) => {
 
   const amtReceived = (txs) => {
     for (const item of txs.out) {
-      if (addr === item.addr) return convertBTC(item.value);
+      if (ownAddr === item.addr) return convertBTC(item.value);
+    }
+    return false;
+  }
+
+  const amtSent = (txs) => {
+    for (const item of txs.inputs) {
+      if (ownAddr === item.prev_out.addr) return convertBTC(item.prev_out.value)
     }
     return 'no transaction';
   }
@@ -30,7 +37,7 @@ const TxsItem = ({ txs, setCurrTxs, id, n, addr }) => {
     <>
       <ListItem className='alt-list2' button onClick={handleClick}>
         <ListItemIcon><SendIcon /></ListItemIcon>
-        <ListItemText primary={`Transaction ${n - id} > ${amtReceived(txs)} BTC`} />
+        <ListItemText primary={`Transaction ${n - id} > ${!amtReceived(txs) ? amtSent(txs) : amtReceived(txs)} BTC`} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>

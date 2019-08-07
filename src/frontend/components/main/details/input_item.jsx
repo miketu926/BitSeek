@@ -8,7 +8,7 @@ import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import './details_styles.css'
 
-const InputItem = ({ txs }) => {
+const InputItem = ({ txs, ownAddr }) => {
   const { addr, value } = txs.prev_out
   const [open, setOpen] = useState(false);
 
@@ -19,7 +19,7 @@ const InputItem = ({ txs }) => {
   return (
     <>
       <ListItem className='alt-list2' button onClick={handleClick}>
-        <ListItemText
+        <ListItemText id={addr === ownAddr ? 'highlight' : null}
           primary={addr}
         />
         {open ? <ExpandLess /> : <ExpandMore />}

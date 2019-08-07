@@ -12,7 +12,7 @@ const TxsDetail = ({ txs, ownAddr }) => {
   const outArr = txs.out;
 
   const inputs = inputArr.map((txs, i) => {
-    return <InputItem key={i} txs={txs} />
+    return <InputItem key={i} txs={txs} ownAddr={ownAddr} />
   })
 
   const outs = outArr.map((txs, i) => {

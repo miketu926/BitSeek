@@ -56,7 +56,7 @@ const Nav = () => {
           <h2 id='modal-title'>Oh No!</h2>
           <div id='modal-search'>{searchTerm}</div>
           <div id="modal-msg">
-            is not a valid bitcoin address
+            is not a valid bitcoin address!
           </div>
           <Button
             className={classes.modalBtn}

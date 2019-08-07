@@ -44,7 +44,6 @@ const navStyles = makeStyles({
     display: 'grid',
     gridTemplateRows: '1fr 1fr 1fr 1fr 1fr',
     position: 'absolute',
-    width: 400,
     height: 200,
   },
   modalBtn: {

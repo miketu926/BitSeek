@@ -49,22 +49,27 @@ ul {
     margin: auto;
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
+    min-width: 700px;
+    max-width: fit-content;
 }
 
 #modal-title {
   place-self: center;
   color: #210740;
+  letter-spacing: 1px;
 }
 
 #modal-search {
   place-self: center;
   margin-bottom:10px;
   color: #210740;
+  letter-spacing: 1px;
 }
 
 #modal-msg {
   place-self: center;
   margin-bottom: 10px;
+  letter-spacing: 1px;
 }
 
 @-webkit-keyframes loader {
