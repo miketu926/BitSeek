@@ -39,6 +39,18 @@ const navStyles = makeStyles({
     letterSpacing: '1px',
     placeSelf: 'center',
     marginBottom: '25px',
+  },
+  modal: {
+    display: 'grid',
+    gridTemplateRows: '1fr 1fr 1fr 1fr 1fr',
+    position: 'absolute',
+    width: 400,
+    height: 200,
+  },
+  modalBtn: {
+    width: '125px',
+    letterSpacing: '3px',
+    placeSelf: 'center',
   }
 })
 

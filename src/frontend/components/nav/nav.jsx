@@ -2,16 +2,23 @@ import React, { useState } from 'react'
 import Main from '../main/main'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import Modal from '@material-ui/core/Modal';
 import navStyles from './nav_styles'
 
 const Nav = () => {
   const [search, setSearch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [openModal, setOpenModal] = useState(false);
   const classes = navStyles();
 
   const handleSeek = e => {
     e.preventDefault();
     setSearch(true);
+  }
+
+  const handleModalClose = () => {
+    setSearchTerm("");
+    setOpenModal(false);
   }
 
   return !search ?
@@ -39,10 +46,37 @@ const Nav = () => {
           onClick={e => handleSeek(e)}>
           BEGIN BITSEEK!</Button>
       </form>
+      <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={openModal}
+        onClose={() => handleModalClose()}
+      >
+        <div className={classes.modal} id='modal'>
+          <h2 id='modal-title'>Oh No!</h2>
+          <div id='modal-search'>{searchTerm}</div>
+          <div id="modal-msg">
+            is not a valid bitcoin address
+          </div>
+          <Button
+            className={classes.modalBtn}
+            variant='outlined'
+            color='primary'
+            size='small'
+            open={openModal}
+            onClick={() => handleModalClose()}>
+            OK</Button>
+        </div>
+      </Modal>
     </div >
     :
     <>
-      <Main address={searchTerm} setSearch={setSearch} setSearchTerm={setSearchTerm} />
+      <Main
+        address={searchTerm}
+        setSearch={setSearch}
+        setSearchTerm={setSearchTerm}
+        setOpenModal={setOpenModal}
+      />
     </>
 
 }

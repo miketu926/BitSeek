@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { fetchAddress } from '../../utils/api'
 import {
   fetchAddressInfo,
   fetchMoreInfo,
@@ -16,7 +17,7 @@ import ListSubheader from '@material-ui/core/ListSubheader'
 import mainStyles from './main_styles'
 import './styles.css'
 
-const Main = ({ address, setSearch, setSearchTerm }) => {
+const Main = ({ address, setSearch, setSearchTerm, setOpenModal }) => {
   const transactions = useSelector(({ entities }) => {
     return entities.txs;
   })
@@ -36,17 +37,24 @@ const Main = ({ address, setSearch, setSearchTerm }) => {
     setOffset(Math.min(offset + 50, numTxs));
   }
 
-  const handleRefresh = (e) => {
-    e.preventDefault();
-    setSearchTerm("");
+  const handleRefresh = (modal = false) => {
     setOffset(0);
     dispatch(removeInfo())
     setSearch(false);
+    modal ? setOpenModal(true) : setSearchTerm("");
   }
 
   useEffect(() => {
     if (offset === 0) {
-      fetchAddressInfo(address, offset)(dispatch);
+      const checkErr = async () => {
+        const res = await fetchAddress(address);
+        if (res.status === 500) {
+          handleRefresh(true);
+        } else {
+          fetchAddressInfo(address, offset)(dispatch);
+        }
+      }
+      checkErr();
     } else if (offset < numTxs) {
       fetchMoreInfo(address, offset)(dispatch);
     }
@@ -63,7 +71,7 @@ const Main = ({ address, setSearch, setSearchTerm }) => {
               className={classes.refreshBtn}
               color="inherit"
               disableRipple={true}
-              onClick={(e) => handleRefresh(e)}
+              onClick={() => handleRefresh()}
             >
               BITSEEK
             </Button>
@@ -99,7 +107,7 @@ const Main = ({ address, setSearch, setSearchTerm }) => {
             className={classes.refreshBtn}
             color="inherit"
             disableRipple={true}
-            onClick={(e) => handleRefresh(e)}
+            onClick={() => handleRefresh()}
           >
             BITSEEK
             </Button>

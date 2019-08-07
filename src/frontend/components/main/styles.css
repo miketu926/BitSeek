@@ -40,6 +40,33 @@ ul {
   margin-bottom: 15px;
 }
 
+#modal {
+    background-color: #ffffff;
+    /* border: 1px solid #1a003b; */
+    box-shadow: 24px 21px 31px -4px #290029;
+    padding: 10px;
+    border-radius: 10px;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+
+#modal-title {
+  place-self: center;
+  color: #210740;
+}
+
+#modal-search {
+  place-self: center;
+  margin-bottom:10px;
+  color: #210740;
+}
+
+#modal-msg {
+  place-self: center;
+  margin-bottom: 10px;
+}
+
 @-webkit-keyframes loader {
     0%{background-position:0% 13%}
     50%{background-position:100% 88%}
