@@ -6,7 +6,7 @@ import List from '@material-ui/core/List'
 import ListSubheader from '@material-ui/core/ListSubheader'
 import './details_styles.css'
 
-const TxsDetail = ({ txs }) => {
+const TxsDetail = ({ txs, ownAddr }) => {
   const { hash, time, vin_sz, vout_sz, block_index } = txs;
   const inputArr = txs.inputs;
   const outArr = txs.out;
@@ -16,7 +16,7 @@ const TxsDetail = ({ txs }) => {
   })
 
   const outs = outArr.map((txs, i) => {
-    return <OutItem key={i} txs={txs} />
+    return <OutItem key={i} txs={txs} ownAddr={ownAddr} />
   })
 
   return (

@@ -94,7 +94,7 @@ const Main = ({ address, setSearch, setSearchTerm, setOpenModal }) => {
   })
 
   const txsDetail = transactions.map((txs, i) => {
-    return <TxsDetail key={i} txs={txs} />
+    return <TxsDetail key={i} txs={txs} ownAddr={address} />
   })
 
   return (

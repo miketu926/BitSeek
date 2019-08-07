@@ -30,7 +30,7 @@ const TxsItem = ({ txs, setCurrTxs, id, n, addr }) => {
     <>
       <ListItem className='alt-list2' button onClick={handleClick}>
         <ListItemIcon><SendIcon /></ListItemIcon>
-        <ListItemText primary={`Transaction ${n - id} - ${amtReceived(txs)} BTC`} />
+        <ListItemText primary={`Transaction ${n - id} > ${amtReceived(txs)} BTC`} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
