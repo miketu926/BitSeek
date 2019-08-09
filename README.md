@@ -1,6 +1,8 @@
 # BitSeek
 [BitSeek](https://miketu.dev/BitSeek/ "BitSeek") (live) is a single page app that searches for cryptocurrency details and transactions of bitcoin addresses using [Blockchain's APIs](https://www.blockchain.com/api/ "Blockchain API").
 
+[Check out the top 100 richest bitcoin addresses](https://bitinfocharts.com/top-100-richest-bitcoin-addresses.html)
+
 ## Table of contents
 * [Installation](#installation)
 * [Features](#features)
