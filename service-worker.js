@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/BitSeek/precache-manifest.f1ded686de1b00d5d7ef702fc7a23984.js"
+  "/BitSeek/precache-manifest.5125da2fdd025f2d7dcc6a5774d71f90.js"
 );
 
 self.addEventListener('message', (event) => {

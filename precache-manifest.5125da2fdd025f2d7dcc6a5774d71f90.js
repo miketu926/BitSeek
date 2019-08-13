@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6effa76d513ed8c5860b70e3d998249a",
+    "revision": "4870f79dcf85518b11baca468364e1a8",
     "url": "/BitSeek/index.html"
   },
   {
-    "revision": "6e93c5d6670bb3273600",
+    "revision": "e12c729a3550adaafc53",
     "url": "/BitSeek/static/css/main.51e781be.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/BitSeek/static/js/2.1b93ad48.chunk.js"
   },
   {
-    "revision": "6e93c5d6670bb3273600",
-    "url": "/BitSeek/static/js/main.5d4e3ef9.chunk.js"
+    "revision": "e12c729a3550adaafc53",
+    "url": "/BitSeek/static/js/main.b5e11408.chunk.js"
   },
   {
     "revision": "9835854dcc837a05d3a3",
