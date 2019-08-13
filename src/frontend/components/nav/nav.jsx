@@ -24,7 +24,7 @@ const Nav = () => {
 
   return !search ?
     <div className={classes.main}>
-      <form className={classes.form}>
+      <form className={classes.form} onSubmit={e => handleSeek(e)}>
         <div className={classes.formTitle}>BITSEEK</div>
         <TextField
           id='outlined-with-placeholder'
