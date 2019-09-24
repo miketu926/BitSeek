@@ -80,7 +80,7 @@ const mainStyles = makeStyles({
 })
 ```
 
-Using styled components with CSS Grids and window.innerHeight in order to dynamically determine height of the app (src/frontend/components/main/main_styles.js)
+Using CSS with JS, in addition to CSS Grids and window.innerHeight in order to dynamically determine height of the app (src/frontend/components/main/main_styles.js)
 
 ```javascript
 const amtReceived = (txs) => {
