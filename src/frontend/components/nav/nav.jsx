@@ -46,6 +46,10 @@ const Nav = () => {
           disabled={searchTerm.length > 0 ? false : true}
           onClick={e => handleSeek(e)}>
           BEGIN BITSEEK!</Button>
+        <div className={classes.tryMsg}>
+          Try an address from one of the top 10 holders:
+          <div>34xp4vRoCGJym3xR7yCVPFHoCNxv4Twseo</div>
+        </div>
       </form>
       <Modal
         aria-labelledby="simple-modal-title"

@@ -50,6 +50,10 @@ const navStyles = makeStyles({
     width: '125px',
     letterSpacing: '3px',
     placeSelf: 'center',
+  },
+  tryMsg: {
+    marginBottom: '10px',
+    color: '#210740',
   }
 })
 
